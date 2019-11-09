@@ -87,8 +87,10 @@ app.post("/" , function(req,res)
 ==========================================GIT ==============================
 
 download and take all the defaults for GIT
-launch cmd and type git init
 
+launch cmd and type git init
+to add a file to track - > git add (filename)
+to add all the files -> git add .
 to commit a change --> git commit -m "this is the first commit"
 
-to add files to track - > git add (filename)
+create repo in github
