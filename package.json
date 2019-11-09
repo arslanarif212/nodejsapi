@@ -1,0 +1,17 @@
+{
+  "name": "apipractice",
+  "version": "1.0.0",
+  "description": "my first api app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "node": "^13.1.0",
+    "request": "^2.88.0"
+  }
+}

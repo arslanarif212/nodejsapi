@@ -1,0 +1,94 @@
+bitcoinaverage
+
+api > documentation > price data
+----------------
+install node first for api
+npm init
+npm install node
+npm install express
+npm install bodyparser
+install request - simplified HTTP client
+----------------
+
+index.js start up
+
+const express = require('express')
+const app = express();
+const port = 3000;
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true })) // this is different from the last time //
+var request = require('request');
+app.listen(port, function(req,res){
+  console.log("APPLICATION IS UP AND RUNNING MY HOMIE, AT PORT NUMBER" + port)
+})
+----------------------
+value btc eth etc in option in html is consistent the API so be careful
+
+To select values from each select within the form which are <select class="form-control" name="crypto"> & <select class="form-control" name="fiat">
+use the below
+var crypto = req.body.crypto;
+  var fiat = req.body.fiat;
+
+------------------------
+
+we need an interface to fetch the information - do that using by downloading request - simplified HTTP Client
+install using ** npm i request**
+
+this, goes in the index.js
+var request = require('request'); ---> already added in the notes above
+
+the format for request, which will go in our app.post("/" , function(req,res) is
+
+request('url', function(error, response, body)//body in the function means body of json file that we receive via the URL//{
+
+ 
+we created two variables. one for base URL one for final
+var baseurl = 'https://apiv2.bitcoinaverage.com/indices/global/ticker/';
+  var finalurl = baseurl + crypto + fiat;
+
+we created var data = JSON.parse(body); <---because the data is in json format
+
+then created 
+
+var price = data.ask;
+var dts = data.display_timestamp;
+
+var total_price = qty * price;
+
+ 
+})
+-------------------------
+
+
+final output is 
+
+app.post("/" , function(req,res)
+{
+  var crypto = req.body.crypto;
+  var fiat = req.body.fiat;
+  var qty = req.body.qty;
+
+  var baseurl = 'https://apiv2.bitcoinaverage.com/indices/global/ticker/';
+  var finalurl = baseurl + crypto + fiat;
+  // ------------REQUESTING THE DATA FROM THE API-------
+  request(finalurl, function(error, response, body){
+   var data = JSON.parse(body);
+   var price = data.ask;
+   var dts = data.display_timestamp;
+  var total_price = qty * price;
+
+       res.write("<h1>" + qty + " " + crypto + ": " + " in " + fiat + " equals to = " + total_price );
+    res.write("<h3>Today is " + dts)
+   res.send();
+   })
+
+})
+
+==========================================GIT ==============================
+
+download and take all the defaults for GIT
+launch cmd and type git init
+
+to commit a change --> git commit -m "this is the first commit"
+
+to add files to track - > git add (filename)
